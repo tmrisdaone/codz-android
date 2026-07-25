@@ -25,10 +25,8 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
         with:
-          api-level: 34
-          build-tools-version: '34.0.0'
-          ndk-version: '26.1.10909125'
-          cmdline-tools-version: 'latest'
+          packages: 'platforms;android-34,build-tools;34.0.0,ndk;26.1.10909125,cmdline-tools;latest'
+          accept-android-sdk-licenses: 'true'
 
       - name: Grant execute permission to gradlew
         run: chmod +x gradlew
@@ -63,7 +61,8 @@ jobs:
           java-version: '17'
       - uses: android-actions/setup-android@v3
         with:
-          api-level: 34
+          packages: 'platforms;android-34,build-tools;34.0.0,cmdline-tools;latest'
+          accept-android-sdk-licenses: 'true'
       - name: Run Lint
         run: ./gradlew lintDebug --no-daemon
       - name: Upload Lint Report
